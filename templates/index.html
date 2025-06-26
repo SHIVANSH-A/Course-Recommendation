@@ -1,62 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Recommendation System</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Recommendation System</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
-<body class="bg-gradient-to-r from-blue-50 via-white to-purple-50 min-h-screen py-10 px-4">
-    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden">
-        <div class="bg-gradient-to-r from-blue-600 to-purple-600 py-8 px-6 text-center text-white">
-            <h2 class="text-4xl font-bold tracking-wide">🔥 Course Recommendation System</h2>
-        </div>
+<body class="bg-gradient-to-br from-blue-50 via-white to-purple-100 min-h-screen flex items-center justify-center px-4 py-10">
 
-        <div class="p-8">
-            <form method="POST" class="mb-10">
-                <label for="course_name" class="block text-gray-700 text-lg font-semibold mb-3">
-                    🚀 Type or select a course you like:
-                </label>
-                <input list="course_list" name="course_name" id="course_name"
-                    value="{{ selected_course }}"
-                    placeholder="e.g., Machine Learning"
-                    class="shadow-lg border border-gray-300 rounded-xl w-full py-3 px-4 text-gray-700 text-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition duration-200" />
-                
-                <datalist id="course_list">
-                    {% for course in courses %}
-                        <option value="{{ course }}">
-                    {% endfor %}
-                </datalist>
-
-                <button type="submit"
-                    class="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-6 mt-6 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-200">
-                    🎯 Show Recommended Courses
-                </button>
-            </form>
-
-            {% if recommendations %}
-                <div class="bg-gray-50 rounded-xl p-6 shadow-inner">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">🎓 Recommended Courses:</h3>
-
-                    {% if not recommendations %}
-                        <p class="text-red-500 font-semibold">No recommendations found for this course.</p>
-                    {% else %}
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {% for recommendation in recommendations %}
-                                <div class="bg-white border border-gray-200 p-5 rounded-lg shadow hover:shadow-lg transition duration-200">
-                                    <h4 class="text-lg font-bold text-blue-600 mb-2">
-                                        <a href="{{ recommendation.url }}" target="_blank" class="hover:underline">
-                                            {{ recommendation.name }}
-                                        </a>
-                                    </h4>
-                                    <p class="text-sm text-gray-500">Click to explore this course.</p>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endif %}
-        </div>
+  <div class="w-full max-w-4xl bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200 transition-all duration-300">
+    
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-700 to-purple-700 py-10 px-8 text-center text-white">
+      <h1 class="text-5xl font-extrabold tracking-wide drop-shadow-lg">🔥 Course Recommendation System</h1>
+      <p class="mt-2 text-sm opacity-80">Find curated courses based on your interests</p>
     </div>
+
+    <!-- Form -->
+    <div class="p-10 bg-white">
+      <form method="POST" class="space-y-6">
+        <div>
+          <label for="course_name" class="block text-gray-800 text-lg font-semibold mb-2">
+            🚀 Type or select a course you like:
+          </label>
+          <input list="course_list" name="course_name" id="course_name"
+            value="{{ selected_course }}"
+            placeholder="e.g., Machine Learning"
+            class="w-full rounded-2xl border border-gray-300 shadow-md px-5 py-3 text-gray-700 text-base focus:outline-none focus:ring-4 focus:ring-purple-400 focus:border-transparent transition-all duration-200"/>
+          <datalist id="course_list">
+            {% for course in courses %}
+              <option value="{{ course }}">
+            {% endfor %}
+          </datalist>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+          🎯 Show Recommended Courses
+        </button>
+      </form>
+
+      <!-- Recommendations -->
+      {% if recommendations %}
+      <div class="mt-10 bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-inner transition-all duration-200">
+        <h3 class="text-2xl font-bold text-gray-800 mb-6">🎓 Recommended Courses:</h3>
+
+        {% if not recommendations %}
+          <p class="text-red-500 font-semibold">No recommendations found for this course.</p>
+        {% else %}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {% for recommendation in recommendations %}
+              <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition duration-200">
+                <h4 class="text-xl font-semibold text-blue-600 mb-1">
+                  <a href="{{ recommendation.url }}" target="_blank" class="hover:underline">
+                    {{ recommendation.name }}
+                  </a>
+                </h4>
+                <p class="text-sm text-gray-500">Click to explore this course.</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
 </body>
 </html>
