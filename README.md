@@ -1,9 +1,13 @@
+# 🔥 Course Recommendation System
+
+A web-based application that suggests similar courses based on your selected input using a precomputed similarity matrix. Built with **Flask**, **Tailwind CSS**, and **Python**, this project provides an interactive frontend and intelligent backend to help users explore related learning content.
+
 ---
 
 ## 🚀 Features
 
 - 🔍 Search and select from a list of courses
-- 🎓 View top 6 recommended courses
+- 🎓 View top recommended courses
 - 🌐 Direct links to course URLs
 - 🖌️ Clean, responsive UI built with Tailwind CSS
 - 🧠 Machine learning backend using cosine similarity
